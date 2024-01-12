@@ -19,31 +19,27 @@ model Usuario {
   email          String   @unique
   senha          String
   tipo           String  
-  // livros         Livro[]
   createdAt      DateTime @default(now())
   updatedAt      DateTime? @updatedAt
   deletedAt      DateTime? 
 }
 
+
+
 model Livro {
-  id             Int      @id @default(autoincrement())
-  autor          String
-  lancamento     DateTime
-  tipo           String
-  imagem         String? 
-  editora        String
-  genero         String
-  anoEdicao      Int
-  numeroEdicao   Int
-  preco          Float
-  descricao      String
-  // usuarioId      Int
-  // generoId      Int
-  // usuario        Usuario  @relation(fields: [usuarioId], references: [id])
-  // genero         Genero   @relation(fields: [generoId], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime? @updatedAt
-  deletedAt      DateTime? 
+  id          Int       @id @default(autoincrement())
+  autor       String
+  lancamento  String       
+  tipo        String
+  editora     String
+  genero      String
+  anoEdicao   Int
+  numeroEdicao Int
+  preco       Float
+  descricao   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
 }
 
 // model Genero {

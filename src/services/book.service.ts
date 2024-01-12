@@ -19,28 +19,13 @@ export class BookService {
     private readonly bookRepository: IBookRepository,
   ) {}
 
-  async createBook(payload: CreateBookDto, imagem: Express.Multer.File | null) {
+  async createBook(payload: CreateBookDto) {
+    console.log('Service payload :', payload);
+
     try {
-      const imagePath = path.join(__dirname, '..', 'upload', 'files');
+      const createdBook = await this.bookRepository.create(payload);
 
-      if (!fs.existsSync(imagePath)) {
-        fs.mkdirSync(imagePath, { recursive: true });
-      }
-
-      // Lógica para processar a imagem
-      let imagemPath: string | null = null;
-
-      if (imagem) {
-        const fileName = `${Date.now()}_${imagem.originalname}`;
-        imagemPath = path.join(imagePath, fileName);
-        fs.writeFileSync(imagemPath, imagem.buffer);
-      }
-
-      // Lógica para salvar no banco (você deve ajustar para o seu modelo)
-      const createdBook = await this.bookRepository.create({
-        ...payload,
-        imagem: imagemPath, // Aqui você está salvando o caminho completo. Ajuste conforme necessário.
-      });
+      console.log('createdBook :', createdBook);
 
       return createdBook;
     } catch (error) {

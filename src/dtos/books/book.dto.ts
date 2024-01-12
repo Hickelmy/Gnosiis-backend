@@ -8,10 +8,8 @@ export class CreateBookDto {
   numeroEdicao: number;
   preco: number;
   descricao: string;
-  imagem?: string;
   usuarioId: number;
 }
-
 export class UpdateBookDto {
   autor?: string;
   lancamento?: Date;
@@ -22,5 +20,4 @@ export class UpdateBookDto {
   numeroEdicao?: number;
   preco?: number;
   descricao?: string;
-  imagem?: string;
 }

@@ -31,22 +31,22 @@ export class BookController {
     return await this.bookService.listAll(page, filters);
   }
 
-  // @Post()
-  // @HttpCode(HttpStatus.CREATED)
-  // async create(@Body() payload: CreateBookDto): Promise<any> {
-  //   return await this.bookService.create(payload);
-  // }
-
   @Post()
-  // @UseInterceptors(FileInterceptor('imagem', multerConfig))
-  async create(
-    @Body() payload: CreateBookDto,
-    @UploadedFile() imagem: Express.Multer.File,
-  ) {
-    console.log('payload : ', payload);
-
-    return this.bookService.createBook(payload, imagem);
+  async create(@Body() payload: CreateBookDto) {
+    console.log('payload :', payload);
+    return this.bookService.createBook(payload);
   }
+
+  // @Post()
+  // @UseInterceptors(FileInterceptor('imagem', multerConfig))
+  // async create(
+  //   @Body() payload: CreateBookDto,
+  //   @UploadedFile() imagem: Express.Multer.File,
+  // ) {
+  //   console.log('payload : ', payload);
+
+  //   return this.bookService.createBook(payload, imagem);
+  // }
 
   @Put('/:id')
   @HttpCode(HttpStatus.OK)

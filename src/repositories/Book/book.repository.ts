@@ -34,6 +34,7 @@ export class BookRepository extends Pageable<any> implements IBooksRepository {
   }
 
   async create(data: any): Promise<any> {
+    console.log('data', data);
     return this.repository.livro.create({
       data,
     });
