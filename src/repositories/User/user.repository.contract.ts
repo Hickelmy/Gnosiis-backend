@@ -5,7 +5,8 @@ export default interface IUserRepository {
   findAll(page: Page, filters?: any): Promise<PageResponse<any>>;
   create(data: CreateUserDto): Promise<any>;
 
-  update(data: any): Promise<any>;
-  delete(id: number): Promise<any>;
+  update(id: string, data: any): Promise<any>;
+  delete(id: string): Promise<any>;
   findOne(nome: string): Promise<any>;
+  findById(id: string): Promise<any>;
 }

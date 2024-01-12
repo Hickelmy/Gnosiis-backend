@@ -48,10 +48,10 @@ export class BookService {
   }
 
   async update(id: string, payload: UpdateBookDto): Promise<any> {
-    return await this.bookRepository.update(payload);
+    return await this.bookRepository.update(id, payload);
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     return await this.bookRepository.delete(id);
   }
 }

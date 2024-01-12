@@ -34,14 +34,17 @@ export class UserService {
   }
 
   async update(id: string, payload: UpdateBookDto): Promise<any> {
-    return await this.userRepository.update(payload);
+    return await this.userRepository.update(id, payload);
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     return await this.userRepository.delete(id);
   }
 
   async findOne(nome: string): Promise<any> {
     return await this.userRepository.findOne(nome);
+  }
+  async findById(id: string): Promise<any> {
+    return await this.userRepository.findById(id);
   }
 }

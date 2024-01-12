@@ -40,18 +40,19 @@ export class BookRepository extends Pageable<any> implements IBooksRepository {
     });
   }
 
-  update(data: any): Promise<any> {
+  update(id: string , data: any): Promise<any> {
+    console.log('data :', data);
     return this.repository.livro.update({
       data: {
         ...data,
       },
       where: {
-        id: data.id,
+        id: id,
       },
     });
   }
 
-  delete(id: number): Promise<any> {
+  delete(id: string): Promise<any> {
     return this.repository.livro.update({
       where: { id: id },
       data: { deletedAt: new Date() },

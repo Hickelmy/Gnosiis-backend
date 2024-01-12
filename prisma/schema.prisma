@@ -13,7 +13,7 @@ datasource db {
 
 
 model Usuario {
-  id             Int      @id @default(autoincrement())
+  id             String      @id @unique @default(uuid())
   nome           String @unique
   dataNascimento DateTime
   email          String   @unique
@@ -27,7 +27,7 @@ model Usuario {
 
 
 model Livro {
-  id             Int      @id @default(autoincrement())
+  id             String      @id @unique @default(uuid())
   nome           String
   nomeDoAutor    String
   lancamento     DateTime

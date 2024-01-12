@@ -50,21 +50,32 @@ export class UserRepository extends Pageable<any> implements IUserRepository {
     });
   }
 
-  update(data: any): Promise<any> {
+  update(id: string, data: any): Promise<any> {
+    console.log('data :', data);
     return this.repository.usuario.update({
       data: {
         ...data,
       },
       where: {
-        id: data.id,
+        id: id,
       },
     });
   }
 
-  delete(id: number): Promise<any> {
-    return this.repository.usuario.update({
+  delete(id: string): Promise<any> {
+    return this.repository.usuario.delete({
       where: { id: id },
-      data: { deletedAt: new Date() },
+    });
+  }
+
+  xs;
+
+  findById(id: string): Promise<any> {
+    return this.repository.usuario.findFirst({
+      where: {
+        id: id,
+        deletedAt: null,
+      },
     });
   }
 }

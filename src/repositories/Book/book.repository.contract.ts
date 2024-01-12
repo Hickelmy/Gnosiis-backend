@@ -5,6 +5,6 @@ export default interface IBookRepository {
   findAll(page: Page, filters?: any): Promise<PageResponse<any>>;
   create(data: CreateBookDto): Promise<any>;
 
-  update(data: any): Promise<any>;
-  delete(id: number): Promise<any>;
+  update(id: string, data: any): Promise<any>;
+  delete(id: string): Promise<any>;
 }

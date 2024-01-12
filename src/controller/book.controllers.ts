@@ -59,7 +59,7 @@ export class BookController {
 
   @Delete('/:id')
   @HttpCode(HttpStatus.OK)
-  async delete(@Param('id') id: number): Promise<any> {
+  async delete(@Param('id') id: string): Promise<any> {
     return await this.bookService.delete(id);
   }
 }
