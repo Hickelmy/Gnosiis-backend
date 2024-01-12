@@ -20,16 +20,17 @@ export class BookService {
   ) {}
 
   async createBook(payload: CreateBookDto) {
-    console.log('Service payload :', payload);
+    console.log('Service payload:', payload);
 
     try {
+      payload.lancamento = new Date(payload.lancamento);
+
       const createdBook = await this.bookRepository.create(payload);
 
-      console.log('createdBook :', createdBook);
+      console.log('createdBook:', createdBook);
 
       return createdBook;
     } catch (error) {
-      // Manipulação de erros
       throw new BadRequestException('Erro ao processar a requisição');
     }
   }
