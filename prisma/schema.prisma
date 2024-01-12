@@ -27,19 +27,19 @@ model Usuario {
 
 
 model Livro {
-  id          Int       @id @default(autoincrement())
-  autor       String
-  lancamento  String       
-  tipo        String
-  editora     String
-  genero      String
-  anoEdicao   Int
-  numeroEdicao Int
-  preco       Float
-  descricao   String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime? @updatedAt
-  deletedAt   DateTime?
+  id             Int      @id @default(autoincrement())
+  autor          String
+  lancamento     DateTime
+  tipo           String
+  editora        String
+  genero         String
+  anoEdicao      Int
+  numeroEdicao   Int
+  preco          Float
+  descricao      String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime? @updatedAt
+  deletedAt      DateTime? 
 }
 
 // model Genero {
