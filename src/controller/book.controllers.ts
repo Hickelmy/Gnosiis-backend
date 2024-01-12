@@ -15,8 +15,8 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import multerConfig from 'src/configs/database/multer-configs';
 import { Page, PageResponse } from 'src/configs/database/page.model';
-import { CreateBookDto, UpdateBookDto } from 'src/dtos/books/book.dto';
 import { BookService } from 'src/services/book.service';
+import { CreateBookDto, UpdateBookDto } from 'src/dtos/books/book.dto';
 
 @Controller('/api/books')
 export class BookController {

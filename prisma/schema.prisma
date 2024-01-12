@@ -28,13 +28,14 @@ model Usuario {
 
 model Livro {
   id             Int      @id @default(autoincrement())
-  autor          String
+  nome           String
+  nomeDoAutor    String
   lancamento     DateTime
   tipo           String
   editora        String
   genero         String
   anoEdicao      Int
-  numeroEdicao   Int
+  numEdicao       Int
   preco          Float
   descricao      String
   createdAt      DateTime @default(now())
