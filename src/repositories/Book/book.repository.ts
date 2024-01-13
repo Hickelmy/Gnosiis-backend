@@ -4,7 +4,7 @@ import { Pageable } from 'src/configs/database/pageable.service';
 import { PrismaService } from 'src/configs/database/prisma.service';
 import IBooksRepository from './book.repository.contract';
 import { generateQueryForBook } from 'src/utils/QueriesBooks';
-import { CreateBookDto } from 'src/dtos/books/book.dto';
+import { CreateBookDto, FilterBookDto } from 'src/dtos/books/book.dto';
 
 @Injectable()
 export class BookRepository extends Pageable<any> implements IBooksRepository {
@@ -12,7 +12,10 @@ export class BookRepository extends Pageable<any> implements IBooksRepository {
     super();
   }
 
-  async findAll(page: Page, filters?: any): Promise<PageResponse<any>> {
+  async findAll(
+    page: Page,
+    filters?: FilterBookDto,
+  ): Promise<PageResponse<any>> {
     const condition = generateQueryForBook(filters);
 
     const items = await this.repository.livro.findMany({
@@ -40,7 +43,7 @@ export class BookRepository extends Pageable<any> implements IBooksRepository {
     });
   }
 
-  update(id: string , data: any): Promise<any> {
+  update(id: string, data: any): Promise<any> {
     console.log('data :', data);
     return this.repository.livro.update({
       data: {

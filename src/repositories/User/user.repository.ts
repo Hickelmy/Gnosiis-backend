@@ -5,6 +5,8 @@ import { PrismaService } from 'src/configs/database/prisma.service';
 import { generateQueryForBook } from 'src/utils/QueriesBooks';
 import IUserRepository from './user.repository.contract';
 import { Usuario } from '@prisma/client';
+import { FilterUserDto, UpdateUserDto } from '../../dtos/users/user.dto';
+import { generateQueryForUser } from 'src/utils/QueriesUser';
 
 @Injectable()
 export class UserRepository extends Pageable<any> implements IUserRepository {
@@ -21,14 +23,22 @@ export class UserRepository extends Pageable<any> implements IUserRepository {
     });
   }
 
-  async findAll(page: Page, filters?: any): Promise<PageResponse<any>> {
-    const condition = generateQueryForBook(filters);
+  async findAll(
+    page: Page,
+    filters?: FilterUserDto,
+  ): Promise<PageResponse<any>> {
+    const condition = generateQueryForUser(filters);
+    console.log('condition', condition);
+    console.log('filters', filters);
 
     const items = await this.repository.usuario.findMany({
       ...this.buildPage(page),
       where: {
         ...condition,
         deletedAt: null,
+      },
+      orderBy: {
+        createdAt: 'asc',
       },
     });
 
@@ -67,8 +77,6 @@ export class UserRepository extends Pageable<any> implements IUserRepository {
       where: { id: id },
     });
   }
-
-  xs;
 
   findById(id: string): Promise<any> {
     return this.repository.usuario.findFirst({

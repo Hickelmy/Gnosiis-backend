@@ -1,8 +1,8 @@
 import { Page, PageResponse } from 'src/configs/database/page.model';
-import { CreateUserDto } from '../../dtos/users/user.dto';
+import { CreateUserDto, UpdateUserDto } from '../../dtos/users/user.dto';
 
 export default interface IUserRepository {
-  findAll(page: Page, filters?: any): Promise<PageResponse<any>>;
+  findAll(page: Page, filters?: UpdateUserDto): Promise<PageResponse<any>>;
   create(data: CreateUserDto): Promise<any>;
 
   update(id: string, data: any): Promise<any>;

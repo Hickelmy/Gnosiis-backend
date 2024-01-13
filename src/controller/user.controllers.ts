@@ -11,7 +11,11 @@ import {
   Put,
 } from '@nestjs/common';
 import { Page, PageResponse } from 'src/configs/database/page.model';
-import { CreateUserDto, UpdateUserDto } from 'src/dtos/users/user.dto';
+import {
+  CreateUserDto,
+  FilterUserDto,
+  UpdateUserDto,
+} from 'src/dtos/users/user.dto';
 import { UserService } from 'src/services/user.service';
 
 @Controller('/api/user')
@@ -22,8 +26,11 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   async getAll(
     @Query() page: Page,
-    @Query() filters: any,
+    @Query() filters: FilterUserDto,
   ): Promise<PageResponse<any>> {
+    console.log('page', page);
+    console.log('filters', filters);
+
     return await this.userService.listAll(page, filters);
   }
 

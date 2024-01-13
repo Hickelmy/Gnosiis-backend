@@ -73,3 +73,15 @@ export class UpdateBookDto {
   @IsString()
   descricao?: string;
 }
+
+export class FilterBookDto {
+  id?: string;
+  nome?: string;
+  nomeDoAutor?: string;
+  tipo?: string;
+  editora?: string;
+  genero?: string;
+  numEdicao?: number;
+  preco?: number;
+  createdAt?: Date;
+}

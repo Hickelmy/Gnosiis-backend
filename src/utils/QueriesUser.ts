@@ -1,8 +1,8 @@
-import { QueryBookDTO } from 'src/dtos/books/query-book.dto';
 import { addHour } from './addHours';
-import { FilterBookDto } from 'src/dtos/books/book.dto';
+import { QueryUserDTO } from 'src/dtos/users/query-user.dto';
+import { FilterUserDto } from 'src/dtos/users/user.dto';
 
-export function generateQueryForBook(filters: FilterBookDto): any {
+export function generateQueryForUser(filters: FilterUserDto): any {
   const fields = {
     createdAt: () => {
       const initialDate = new Date(filters.createdAt);
@@ -14,41 +14,29 @@ export function generateQueryForBook(filters: FilterBookDto): any {
         },
       };
     },
-
-    id: () => ({
-      id: filters.id,
-    }),
     nome: () => ({
       nome: {
         contains: filters.nome,
       },
     }),
-    editora: () => ({
-      editora: {
-        contains: filters.editora,
+    email: () => ({
+      email: {
+        contains: filters.email,
       },
     }),
-    genero: () => ({
-      genero: {
-        contains: filters.genero,
+    tipo: () => ({
+      tipo: {
+        contains: filters.tipo,
       },
     }),
-    nomeDoAutor: () => ({
-      nomeDoAutor: {
-        contains: filters.nomeDoAutor,
-      },
-    }),
-    numEdicao: () => ({
-      numEdicao: filters.numEdicao,
-    }),
-    preco: () => ({
-      preco: filters.preco,
+    id: () => ({
+      id: filters.id,
     }),
   };
 
   const keysFields = Object.keys(fields);
 
-  let query: QueryBookDTO;
+  let query: QueryUserDTO;
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   let queryBuilder: Function;

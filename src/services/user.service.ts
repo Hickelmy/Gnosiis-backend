@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { Page, PageResponse } from 'src/configs/database/page.model';
 import { UpdateBookDto } from 'src/dtos/books/book.dto';
-import { CreateUserDto } from 'src/dtos/users/user.dto';
+import { CreateUserDto, FilterUserDto } from 'src/dtos/users/user.dto';
 import IUserRepository from 'src/repositories/User/user.repository.contract';
 
 @Injectable()
@@ -21,7 +21,10 @@ export class UserService {
     return await this.userRepository.create(payload);
   }
 
-  async listAll(page: Page, filters?: any): Promise<PageResponse<any>> {
+  async listAll(
+    page: Page,
+    filters?: FilterUserDto,
+  ): Promise<PageResponse<any>> {
     const data = await this.userRepository.findAll(page, filters);
 
     if (data.items.length === 0) {

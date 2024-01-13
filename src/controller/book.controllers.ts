@@ -16,7 +16,11 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import multerConfig from 'src/configs/database/multer-configs';
 import { Page, PageResponse } from 'src/configs/database/page.model';
 import { BookService } from 'src/services/book.service';
-import { CreateBookDto, UpdateBookDto } from 'src/dtos/books/book.dto';
+import {
+  CreateBookDto,
+  FilterBookDto,
+  UpdateBookDto,
+} from 'src/dtos/books/book.dto';
 
 @Controller('/api/books')
 export class BookController {
@@ -26,7 +30,7 @@ export class BookController {
   @HttpCode(HttpStatus.OK)
   async getAll(
     @Query() page: Page,
-    @Query() filters: any,
+    @Query() filters: FilterBookDto,
   ): Promise<PageResponse<any>> {
     return await this.bookService.listAll(page, filters);
   }
@@ -54,6 +58,9 @@ export class BookController {
     @Param('id') id: string,
     @Body() payload: UpdateBookDto,
   ): Promise<any> {
+    console.log('id', id);
+    console.log('payload', payload);
+
     return await this.bookService.update(id, payload);
   }
 

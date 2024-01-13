@@ -9,7 +9,11 @@ import {
 import * as fs from 'fs';
 import path from 'path';
 import { Page, PageResponse } from 'src/configs/database/page.model';
-import { CreateBookDto, UpdateBookDto } from 'src/dtos/books/book.dto';
+import {
+  CreateBookDto,
+  FilterBookDto,
+  UpdateBookDto,
+} from 'src/dtos/books/book.dto';
 import IBookRepository from 'src/repositories/Book/book.repository.contract';
 
 @Injectable()
@@ -35,7 +39,10 @@ export class BookService {
     }
   }
 
-  async listAll(page: Page, filters?: any): Promise<PageResponse<any>> {
+  async listAll(
+    page: Page,
+    filters?: FilterBookDto,
+  ): Promise<PageResponse<any>> {
     const data = await this.bookRepository.findAll(page, filters);
 
     if (data.items.length === 0) {
@@ -48,6 +55,9 @@ export class BookService {
   }
 
   async update(id: string, payload: UpdateBookDto): Promise<any> {
+    console.log('id : ', id);
+    console.log('payload : ', payload);
+
     return await this.bookRepository.update(id, payload);
   }
 
